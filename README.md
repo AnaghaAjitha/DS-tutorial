@@ -44,8 +44,6 @@ F-statistic: 0.0011
    - The high RSE (5.0670) reflects poor predictive accuracy.
    - The insignificant F-statistic (0.0011) suggests the model is not meaningful for this medium.
 
----
-
 ## Conclusion
 - TV advertising is the most impactful medium for boosting sales.
 - Radio advertising has a moderate effect.
