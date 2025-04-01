@@ -1,6 +1,7 @@
 import numpy as np  # Import NumPy for numerical operations
 import matplotlib.pyplot as plt  # Import Matplotlib for visualization
 
+# Define the SVM class
 class SVM:
     def __init__(self, learning_rate=0.001, lambda_param=0.01, n_iters=1000):
         self.lr = learning_rate  # Learning rate for gradient descent updates
@@ -32,6 +33,10 @@ class SVM:
                     # If misclassified, update weight and bias using hinge loss gradient
                     self.w -= self.lr * (2 * self.lambda_param * self.w - np.dot(x_i, y_[idx]))
                     self.b -= self.lr * y_[idx]
+        
+        # Print learned parameters
+        print("Learned weights (w):", self.w)
+        print("Learned bias (b):", self.b)
     
     def predict(self, X):
         # Compute the linear decision function
@@ -50,6 +55,7 @@ svm.fit(X, y)
 
 # Plot decision boundary
 def plot_decision_boundary(X, y, model):
+    # Plot data points
     plt.scatter(X[:, 0], X[:, 1], c=y, cmap='bwr', edgecolors='k')
     
     # Create grid to plot decision boundary
@@ -60,10 +66,20 @@ def plot_decision_boundary(X, y, model):
     Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
     Z = Z.reshape(xx.shape)
     
+    # Plot contour for decision boundary
     plt.contourf(xx, yy, Z, alpha=0.3, cmap='bwr')
     plt.xlabel('Feature 1')
     plt.ylabel('Feature 2')
     plt.title('SVM Decision Boundary')
-    plt.show()
 
+# Plot the decision boundary
+plt.figure()  # Create a new figure
 plot_decision_boundary(X, y, svm)
+plt.show()  # Show the plot
+
+# Another figure (e.g., you can plot other visualizations or data)
+plt.figure()  # Create a second figure
+plt.plot(np.arange(1, 11), np.random.randn(10), label="Random Data")
+plt.title("Another Plot")
+plt.legend()
+plt.show()  # Display second plot
